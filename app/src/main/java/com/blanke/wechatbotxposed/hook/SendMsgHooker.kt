@@ -17,6 +17,10 @@ object SendMsgHooker : HookerProvider {
     private val netSceneSendMsgHook = Hooker {
         XposedBridge.hookAllConstructors(Classes.NetSceneSendMsg, object : XC_MethodHook() {
             override fun beforeHookedMethod(param: MethodHookParam?) {
+                //非好友消息回复，IndexOutOfBoundsException问题解决
+                if (param?.args?.size == 0) {
+                    return;
+                }
                 param?.args?.apply {
                     val content = this[1] as String
                     val splitIndex = content.indexOf(wxMsgSplitStr)
