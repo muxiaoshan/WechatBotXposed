@@ -3,6 +3,8 @@
 buildscript {
     ext.kotlin_version = '1.2.31'
     repositories {
+        mavenLocal() //直接使用本地maven仓库
+        mavenCentral() //maven中央远程仓库
         google()
         jcenter()
     }
@@ -17,6 +19,8 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal() //直接使用本地maven仓库
+        mavenCentral() //maven中央远程仓库
         google()
         jcenter()
     }
